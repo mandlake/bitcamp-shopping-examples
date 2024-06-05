@@ -1,0 +1,45 @@
+spring:
+  application:
+    name: security
+  datasource:
+    url: jdbc:mysql://101.79.11.115:3306/lawdb?useSSL=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: root
+    password: rootroot
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  sql:
+    init:
+      platform: mysql
+      mode: always
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        jdbc:
+          lob:
+            '[non_contextual_creation]': true
+        '[format_sql]': true
+    show-sql: true
+    defer-datasource-initialization: true
+    open-in-view: false
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: debug
+        type: trace
+      springframework:
+        security: debug
+        web: debug
+        data: debug
+        hibernate: debug
+        jpa: debug
+        sql: debug
+        jwt: debug
+
+jwt:
+  secret: secret-key
+  expiration: 86400000 # 1 day
+  refresh-token:
+    expiration: 604800000 # 7 days

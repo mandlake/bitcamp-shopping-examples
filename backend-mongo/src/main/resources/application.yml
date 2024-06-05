@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: test
+  data:
+    mongodb:
+      host: 101.79.11.115
+      port: 27017
+      authentication-database: admin
+      username: root
+      password: root
+      database: mongodb
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: debug
+        type: trace
+      springframework:
+        security: debug
+        web: debug
+        data: debug
+        hibernate: debug
+        jpa: debug
+        sql: debug
+        jwt: debug
+
+jwt:
+  secret: secret-key
+  expiration: 86400000 # 1 day
+  refresh-token:
+    expiration: 604800000 # 7 days

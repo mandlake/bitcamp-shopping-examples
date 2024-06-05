@@ -1,13 +1,9 @@
 "use client";
 
-function Home() {
+export default function Home() {
   return (
     <>
-      <div>
-        <h1>안녕하세요.</h1>
-      </div>
+      <div>Hello</div>
     </>
   );
 }
-
-export default Home;
