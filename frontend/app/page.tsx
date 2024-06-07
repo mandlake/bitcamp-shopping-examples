@@ -15,7 +15,7 @@ export default function Home() {
           <div className=" justify-start flex flex-col gap-[0.5vh]">
             <div className="bg-[var(--color-Harbor-firth)] w-[20vw] hover:bg-gradient-to-r from-[var(--color-Harbor-first)] to-[var(--color-Harbor-firth)] transition duration-500 ease-in-out px-[2vw]">
               <button
-                onClick={() => router.push(`/pages/join`)}
+                onClick={() => router.push(`/pages/users/join`)}
                 className="text-[var(--color-Harbor-second)] hover:text-[var(--color-Harbor-firth)] transition duration-500 ease-in-out"
               >
                 회원가입으로 이동 -&gt;
@@ -23,7 +23,7 @@ export default function Home() {
             </div>
             <div className="bg-[var(--color-Harbor-firth)] w-[20vw] hover:bg-gradient-to-r from-[var(--color-Harbor-first)] to-[var(--color-Harbor-firth)] transition duration-500 ease-in-out px-[2vw]">
               <button
-                onClick={() => router.push(`/pages/login`)}
+                onClick={() => router.push(`/pages/users/login`)}
                 className="text-[var(--color-Harbor-second)] hover:text-[var(--color-Harbor-firth)] transition duration-500 ease-in-out"
               >
                 로그인으로 이동 -&gt;
