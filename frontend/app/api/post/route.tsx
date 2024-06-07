@@ -4,11 +4,18 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-export async function createUser(data: any) {
-  const { name, email, username, password } = data;
-  const res = await prisma.user.create({
+export async function createUser(data: {
+  firstName: string;
+  lastName: string;
+  email: string;
+  username: string;
+  password: string;
+}) {
+  const { firstName, lastName, email, username, password } = data;
+  const res = await prisma.users.create({
     data: {
-      name: name,
+      firstName: firstName,
+      lastName: lastName,
       email: email,
       username: username,
       password: password,
@@ -17,24 +24,27 @@ export async function createUser(data: any) {
   console.log(res);
 }
 
-export async function login(data: any) {
+export async function login(data: { username: string; password: string }) {
   const { username, password } = data;
-  const user = await prisma.user.update({
+  const user = await prisma.users.update({
     where: {
       username: username,
       password: password,
     },
     data: {
-      tokens: "token1",
+      refreshToken: "token1",
     },
   });
   console.log(user);
   return user;
 }
 
-export async function forgotPassword(data: any) {
+export async function forgotPassword(data: {
+  username: string;
+  password: string;
+}) {
   const { username, password } = data;
-  const user = await prisma.user.update({
+  const user = await prisma.users.update({
     where: {
       username: username,
     },
@@ -46,9 +56,9 @@ export async function forgotPassword(data: any) {
   return user;
 }
 
-export async function forgotUsername(data: any) {
+export async function forgotUsername(data: { email: string }) {
   const { email } = data;
-  const user = await prisma.user.findFirst({
+  const user = await prisma.users.findUnique({
     where: {
       email: email,
     },
@@ -57,21 +67,22 @@ export async function forgotUsername(data: any) {
   return user;
 }
 
-export async function logout(data: any) {
-  const user = await prisma.user.update({
+export async function logout(data: { username: string }) {
+  const { username } = data;
+  const user = await prisma.users.update({
     where: {
-      username: data.username,
+      username: username,
     },
     data: {
-      tokens: null,
+      refreshToken: null,
     },
   });
   return { message: "logout" };
 }
 
-export const getUser = (data: any) => {
+export const getUser = (data: string) => {
   try {
-    const user = prisma.user.findUnique({
+    const user = prisma.users.findUnique({
       where: {
         username: data,
       },
