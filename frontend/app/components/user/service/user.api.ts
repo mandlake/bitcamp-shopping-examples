@@ -1,6 +1,5 @@
 "service";
 
-import instance from "@/app/config/axios-config";
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
