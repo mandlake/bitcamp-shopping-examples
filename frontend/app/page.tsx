@@ -7,7 +7,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="flex flex-col justify-center items-center w-screen h-screen">
+      <div className="flex flex-col justify-center items-center h-screen w-screen">
         <div className="flex flex-col gap-[0.5vh]">
           <div className="text-[var(--color-Harbor-firth)] bg-[var(--color-Harbor-first)] flex flex-col justify-center items-center align-middle w-[41.53vw] h-[18.85vh]">
             <h1 className="font-normal text-[9.77vh] my-[4.54vh]">Lawmate</h1>
