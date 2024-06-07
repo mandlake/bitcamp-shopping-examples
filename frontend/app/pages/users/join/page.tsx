@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { createUser } from "@/app/api/post/route";
 
 function Join() {
   const router = useRouter();
@@ -16,7 +15,6 @@ function Join() {
 
   const handleJoin = async () => {
     try {
-      await createUser(formData);
       router.push("/pages/users/login");
     } catch (error) {
       console.log(error);

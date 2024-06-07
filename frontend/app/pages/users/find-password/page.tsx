@@ -1,6 +1,5 @@
 "use client";
 
-import { forgotPassword } from "@/app/api/post/route";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -12,7 +11,6 @@ function ForgotPassword() {
   });
   const handleForgotPassword = async () => {
     try {
-      await forgotPassword(formData);
       router.push(`/pages/users/login`);
     } catch (error) {
       console.error(error);

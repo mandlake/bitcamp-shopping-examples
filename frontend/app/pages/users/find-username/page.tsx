@@ -1,6 +1,5 @@
 "use client";
 
-import { forgotUsername } from "@/app/api/post/route";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -12,10 +11,7 @@ function ForgotUsername() {
 
   const handleForgotUsername = async () => {
     try {
-      await forgotUsername(formData).then((res) => {
-        alert("당신의 아이디는 " + res?.username + " 입니다.");
-        router.push(`/pages/users/login`);
-      });
+      router.push(`/pages/users/login`);
     } catch (error) {
       console.error(error);
     }

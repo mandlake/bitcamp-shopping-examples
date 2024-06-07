@@ -1,6 +1,5 @@
 "use client";
 
-import { login } from "@/app/api/post/route";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -11,19 +10,7 @@ const Login = () => {
     password: "",
   });
 
-  const handleLogin = async () => {
-    try {
-      const response = await login(formData);
-      if (response.accessToken !== "") {
-        router.push(`/`);
-      } else {
-        alert("로그인에 실패했습니다. 다시 시도하십시오.");
-      }
-    } catch (error) {
-      console.error("Error during login:", error);
-      alert("로그인에 실패했습니다. 다시 시도하십시오.");
-    }
-  };
+  const handleLogin = async () => {};
 
   return (
     <>
