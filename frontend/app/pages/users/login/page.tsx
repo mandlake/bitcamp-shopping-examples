@@ -98,7 +98,7 @@ const Login = () => {
               onClick={() => router.push(`/pages/users/join`)}
               className="text-gray-700 text-sm"
             >
-              Aren't you a member yet? Join now!
+              Aren&apos;t you a member yet? Join now!
             </p>
           </div>
         </div>
