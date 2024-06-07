@@ -2,9 +2,12 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useDispatch } from "react-redux";
+import { joinId } from "@/app/components/user/service/user.service";
 
 function Join() {
   const router = useRouter();
+  const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -15,7 +18,10 @@ function Join() {
 
   const handleJoin = async () => {
     try {
-      router.push("/pages/users/login");
+      dispatch(joinId(formData)).then(() => {
+        alert("success to join us");
+        router.push("/pages/users/login");
+      });
     } catch (error) {
       console.log(error);
     }
