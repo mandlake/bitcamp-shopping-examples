@@ -1,7 +1,6 @@
 "use server";
 
 import { PrismaClient } from "@prisma/client";
-import { NextApiRequest, NextApiResponse } from "next";
 
 const prisma = new PrismaClient();
 
@@ -66,34 +65,6 @@ export async function forgotUsername(data: { email: string }) {
   });
   console.log(user);
   return user;
-}
-
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
-  const { username } = req.body; // Assuming username is sent in the request body
-
-  if (req.method === "POST") {
-    try {
-      // Your existing logout logic (update user with null refreshToken)
-      const user = await prisma.users.update({
-        where: {
-          username,
-        },
-        data: {
-          refreshToken: null,
-        },
-      });
-
-      res.status(200).json({ message: "logout" }); // Send successful logout message
-    } catch (error) {
-      console.error(error); // Log any errors
-      res.status(500).json({ message: "Error logging out" }); // Send error message
-    }
-  } else {
-    res.status(405).json({ message: "Method not allowed" }); // Handle invalid methods
-  }
 }
 
 export const getUser = (data: string) => {
