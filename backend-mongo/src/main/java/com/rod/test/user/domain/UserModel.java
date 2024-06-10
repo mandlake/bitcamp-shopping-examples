@@ -1,6 +1,5 @@
 package com.rod.test.user.domain;
 
-import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -8,22 +7,17 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.io.Serializable;
 import java.util.*;
 
-@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "users")
 public class UserModel implements Serializable , UserDetails {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long userId ;
+    Long userId;
     String username;
-    String firstName ;
-    String lastName ;
+    String firstName;
+    String lastName;
     String email;
-    String password ;
+    String password;
 
-    @ManyToMany(fetch = FetchType.EAGER  , cascade = CascadeType.PERSIST)
     List <RoleModel> roles ;
 
     public UserModel (String email , String password , List<RoleModel> roles) {

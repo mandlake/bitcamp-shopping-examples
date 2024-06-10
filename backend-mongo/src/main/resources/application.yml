@@ -1,29 +1,19 @@
 spring:
   application:
-    name: test
+    name: rootapp
   data:
     mongodb:
-      host: 101.79.11.115
-      port: 27017
-      authentication-database: admin
-      username: root
-      password: root
-      database: mongodb
-
+      uri: mongodb://root:root@mongodb-container:27017/mongodb
+  sql:
+    init:
+      mode: always
+      encoding: UTF-8
 logging:
   level:
     org:
       hibernate:
         SQL: debug
         type: trace
-      springframework:
-        security: debug
-        web: debug
-        data: debug
-        hibernate: debug
-        jpa: debug
-        sql: debug
-        jwt: debug
 
 jwt:
   secret: secret-key

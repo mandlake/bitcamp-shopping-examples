@@ -1,7 +1,12 @@
 "server";
 
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { joinApi, loginApi } from "./user.api";
+import {
+  forgotPasswordApi,
+  forgotUsernameApi,
+  joinApi,
+  loginApi,
+} from "./user.api";
 import { IUser } from "../model/user";
 
 export const joinId: any = createAsyncThunk(
@@ -21,6 +26,30 @@ export const loginId: any = createAsyncThunk(
   async (user: IUser) => {
     try {
       const response = loginApi(user);
+      return response;
+    } catch (error) {
+      return error;
+    }
+  }
+);
+
+export const forgotUsername: any = createAsyncThunk(
+  "user/forgotUsername",
+  async ({ email }: IUser) => {
+    try {
+      const response = forgotUsernameApi(email);
+      return response;
+    } catch (error) {
+      return error;
+    }
+  }
+);
+
+export const forgotPassword: any = createAsyncThunk(
+  "user/forgotPassword",
+  async (user: IUser) => {
+    try {
+      const response = forgotPasswordApi(user);
       return response;
     } catch (error) {
       return error;
