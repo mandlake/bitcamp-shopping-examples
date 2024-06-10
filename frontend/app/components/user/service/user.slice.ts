@@ -15,4 +15,6 @@ export const userSlice = createSlice({
 
 export const {} = userSlice.actions;
 
+export const getJoinId = (state: any) => state.user.array;
+
 export default userSlice.reducer;

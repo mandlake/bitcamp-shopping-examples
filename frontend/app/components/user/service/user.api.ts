@@ -1,22 +1,23 @@
-"service";
+"use server";
 
 import { PrismaClient } from "@prisma/client";
+import { IUser } from "../model/user";
 
 const prisma = new PrismaClient();
 
 export const joinApi = async (user: IUser) => {
+  const { username, password, firstName, lastName, email } = user;
   try {
     const response = await prisma.users.create({
       data: {
-        username: user.username,
-        password: user.password,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        email: user.email,
+        username: username,
+        password: password,
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
       },
     });
-    console.log("success");
-    return response.userId;
+    return response;
   } catch (error) {
     return error;
   }

@@ -1,5 +1,7 @@
-export const initialState: any = {
+import { userState } from "../model/userState";
+
+export const initialState: userState = {
   array: [],
-  json: {},
+  json: {} as any,
   auth: {},
 };

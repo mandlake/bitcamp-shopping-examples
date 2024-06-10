@@ -28,12 +28,8 @@ const userPersistConfig = {
   whitelist: ["userState"],
 };
 
-const persistedArticleReducer = persistReducer(userPersistConfig, userReducer);
-// const persistedUserReducer = persistReducer(userPersistConfig, userReducer);
-// const persistedBoardReducer = persistReducer(boardPersistConfig, boardReducer);
+const persistedUserReducer = persistReducer(userPersistConfig, userReducer);
 
 export const rootReducer = combineReducers({
-  article: persistedArticleReducer,
-  //   user: persistedUserReducer,
-  //   board: persistedBoardReducer
+  user: persistedUserReducer,
 });

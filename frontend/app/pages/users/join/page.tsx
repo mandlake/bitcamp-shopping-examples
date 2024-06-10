@@ -4,24 +4,26 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
 import { joinId } from "@/app/components/user/service/user.service";
+import { IUser } from "@/app/components/user/model/user";
 
 function Join() {
   const router = useRouter();
   const dispatch = useDispatch();
-  const [formData, setFormData] = useState({
-    username: "",
-    password: "",
-    firstName: "",
-    lastName: "",
-    email: "",
-  });
+  const [formData, setFormData] = useState({} as IUser);
 
   const handleJoin = async () => {
     try {
-      dispatch(joinId(formData)).then(() => {
-        alert("success to join us");
-        router.push("/pages/users/login");
-      });
+      await dispatch(joinId(formData))
+        .then((res: any) => {
+          alert("success to join us");
+          console.log(res.payload.userId);
+        })
+        .then(() => {
+          router.push("/pages/users/login");
+        })
+        .catch((error: any) => {
+          console.log(error);
+        });
     } catch (error) {
       console.log(error);
     }
