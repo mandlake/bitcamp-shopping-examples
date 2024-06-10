@@ -2,7 +2,6 @@
 
 import { PrismaClient } from "@prisma/client";
 import { IUser } from "../model/user";
-import exp from "constants";
 
 const prisma = new PrismaClient();
 

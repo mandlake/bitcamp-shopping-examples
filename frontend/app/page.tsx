@@ -8,10 +8,8 @@ export default function Home() {
   return (
     <>
       <div className="flex flex-col justify-center items-center h-screen w-screen">
-        <div className="flex flex-col gap-[0.5vh]">
-          <div className="text-[var(--color-Harbor-firth)] bg-[var(--color-Harbor-first)] flex flex-col justify-center items-center align-middle w-[41.53vw] h-[18.85vh]">
-            <h1 className="font-normal text-[6.948vw] m-[4.539vh]">Lawmate</h1>
-          </div>
+        <div className="flex flex-col p-0 justify-center items-center">
+          <img src="/img/LAWMATE.jpg" className="w-[40vw]" />
           <div className=" justify-start flex flex-col gap-[0.5vh]">
             <div className="bg-[var(--color-Harbor-firth)] w-[41.53vw] hover:bg-gradient-to-r from-[var(--color-Harbor-first)] to-[var(--color-Harbor-firth)] transition duration-500 ease-in-out px-[2vw]">
               <button
