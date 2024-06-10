@@ -22,3 +22,21 @@ export const joinApi = async (user: IUser) => {
     return error;
   }
 };
+
+export const loginApi = async (user: IUser) => {
+  const { username, password } = user;
+  try {
+    const response = await prisma.users.update({
+      where: {
+        username: username,
+        password: password,
+      },
+      data: {
+        accessToken: "1234567890",
+      },
+    });
+    return response;
+  } catch (error) {
+    return error;
+  }
+};
