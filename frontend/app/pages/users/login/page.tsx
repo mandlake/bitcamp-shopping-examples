@@ -77,6 +77,11 @@ const Login = () => {
                 onChange={(e: any) =>
                   setFormData({ ...formData, password: e.target.value })
                 }
+                onKeyDown={(e: any) => {
+                  if (e.key === "Enter") {
+                    handleLogin();
+                  }
+                }}
                 className="w-[24vw] h-[5vh] border border-gray-700 px-[1.111vw] mb-[1.111vh] bg-gray-200"
               />
             </label>

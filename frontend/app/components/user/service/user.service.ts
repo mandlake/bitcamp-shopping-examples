@@ -6,6 +6,7 @@ import {
   forgotUsernameApi,
   joinApi,
   loginApi,
+  logoutApi,
 } from "./user.api";
 import { IUser } from "../model/user";
 
@@ -50,6 +51,18 @@ export const forgotPassword: any = createAsyncThunk(
   async (user: IUser) => {
     try {
       const response = forgotPasswordApi(user);
+      return response;
+    } catch (error) {
+      return error;
+    }
+  }
+);
+
+export const logout: any = createAsyncThunk(
+  "user/logout",
+  async (users: IUser) => {
+    try {
+      const response = logoutApi(users);
       return response;
     } catch (error) {
       return error;

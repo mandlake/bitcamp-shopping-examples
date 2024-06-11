@@ -90,6 +90,11 @@ function Join() {
             onChange={(e: any) =>
               setFormData({ ...formData, email: e.target.value })
             }
+            onKeyDown={(e: any) => {
+              if (e.key === "Enter") {
+                handleJoin();
+              }
+            }}
           />
         </div>
         <button onClick={handleJoin}>회원가입</button>
