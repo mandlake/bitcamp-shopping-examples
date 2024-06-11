@@ -10,25 +10,15 @@ const getAccessToken = () => {
     if (setCookie.has("accessToken")) {
       const cookie = setCookie.get("accessToken");
       console.log("cookie retrieved: ", cookie?.name); // Mask sensitive information if needed
-      return cookie;
+      return cookie?.name;
     } else {
       console.log("accessToken is not found");
-      return null;
+      return "";
     }
   } catch (error) {
     console.error("Error accessing cookie:", error);
-    return null; // Return null in case of errors
+    return error; // Return null in case of errors
   }
 };
 
-// Function to delete the access token cookie
-const deleteAccessToken = () => {
-  try {
-    const setCookie = cookies();
-    setCookie.delete("accessToken");
-  } catch (error) {
-    console.error("Error deleting cookie:", error);
-  }
-};
-
-export { getAccessToken, deleteAccessToken };
+export { getAccessToken };

@@ -10,11 +10,12 @@ import { iconsCSS, rounded } from "../common/icons";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
 import { logout } from "../user/service/user.service";
+import { getAccessToken } from "./cookies"; // Import getAccessToken from cookies.js
 
 const Header = () => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // Use a more descriptive state variable name
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState({
     menu: false,
     cash: false,
@@ -22,6 +23,11 @@ const Header = () => {
     notification: false,
     account: false,
   });
+
+  const user = {
+    username: "1",
+    password: "1",
+  };
 
   const handleAccount = () => {
     setIsDropdownOpen({
@@ -31,9 +37,9 @@ const Header = () => {
   };
 
   const handleLogOut = () => {
-    dispatch(logout())
+    dispatch(logout(user))
       .then((res: any) => {
-        setIsLoggedIn(false); // Update isLoggedIn state after logout
+        setIsLoggedIn(false);
         router.push("/");
       })
       .catch((error: any) => {
@@ -42,10 +48,13 @@ const Header = () => {
       });
   };
 
+  const checkAuthentication = async () => {
+    const accessToken: any = await getAccessToken();
+    if (accessToken === "accessToken") setIsLoggedIn(!!accessToken);
+  };
+
   useEffect(() => {
-    // Fetch user authentication status here
-    // e.g., check localStorage or API for token
-    setIsLoggedIn(true); // Set isLoggedIn based on authentication status
+    checkAuthentication();
   }, []);
 
   return (

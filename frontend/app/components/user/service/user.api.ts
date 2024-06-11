@@ -85,7 +85,7 @@ export const logoutApi = async (users: IUser) => {
         accessToken: "",
       },
     });
-    setCookie.set("accessToken", "");
+    setCookie.delete("accessToken");
     return response;
   } catch (error) {
     return error;
