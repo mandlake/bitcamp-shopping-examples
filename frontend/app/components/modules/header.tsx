@@ -10,7 +10,7 @@ import { iconsCSS, rounded } from "../common/icons";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
 import { logout } from "../user/service/user.service";
-import { getAccessToken } from "./cookies"; // Import getAccessToken from cookies.js
+import { getAccessToken } from "./cookies";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -24,9 +24,11 @@ const Header = () => {
     account: false,
   });
 
-  const user = {
-    username: "1",
-    password: "1",
+  const checkAuthentication: any = async () => {
+    const accessToken: any = await getAccessToken();
+    console.log("accessToken: ", accessToken);
+    setIsLoggedIn(!!accessToken);
+    return accessToken;
   };
 
   const handleAccount = () => {
@@ -37,7 +39,7 @@ const Header = () => {
   };
 
   const handleLogOut = () => {
-    dispatch(logout(user))
+    dispatch(logout(checkAuthentication.value))
       .then((res: any) => {
         setIsLoggedIn(false);
         router.push("/");
@@ -48,14 +50,9 @@ const Header = () => {
       });
   };
 
-  const checkAuthentication = async () => {
-    const accessToken: any = await getAccessToken();
-    if (accessToken === "accessToken") setIsLoggedIn(!!accessToken);
-  };
-
   useEffect(() => {
     checkAuthentication();
-  }, []);
+  }, [isLoggedIn]);
 
   return (
     <>

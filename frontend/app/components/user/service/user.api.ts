@@ -75,11 +75,11 @@ export const forgotPasswordApi = async (user: IUser) => {
   }
 };
 
-export const logoutApi = async (users: IUser) => {
+export const logoutApi = async (accessToken: string) => {
   try {
-    const response = await prisma.users.update({
+    const response = await prisma.users.updateMany({
       where: {
-        username: users.username,
+        accessToken: accessToken,
       },
       data: {
         accessToken: "",

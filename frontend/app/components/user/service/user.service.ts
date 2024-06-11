@@ -60,9 +60,9 @@ export const forgotPassword: any = createAsyncThunk(
 
 export const logout: any = createAsyncThunk(
   "user/logout",
-  async (users: IUser) => {
+  async (accessToken: string) => {
     try {
-      const response = logoutApi(users);
+      const response = logoutApi(accessToken);
       return response;
     } catch (error) {
       return error;
