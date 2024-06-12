@@ -5,7 +5,7 @@ spring:
     name: rootapp
   data:
     mongodb:
-      uri: mongodb://root:root@101.79.11.115:27017/rootdb?retryWrites=true&w=majority
+      uri: mongodb://root:root@101.79.11.115:27017/rootdb?authSource=admin&retryWrites=true&w=majority
   sql:
     init:
       mode: always

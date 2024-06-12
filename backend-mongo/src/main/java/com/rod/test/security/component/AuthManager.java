@@ -1,8 +1,8 @@
-package com.rod.test.secuity.component;
+package com.rod.test.security.component;
 
-import com.rod.test.secuity.filter.TokenProvider;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
+import com.rod.test.security.filter.TokenProvider;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 import reactor.core.publisher.Mono;
@@ -12,6 +12,8 @@ import org.springframework.security.authentication.ReactiveAuthenticationManager
 @Component
 @RequiredArgsConstructor
 public class AuthManager implements ReactiveAuthenticationManager {
+
+
 
     private final TokenProvider tokenProvider;
 

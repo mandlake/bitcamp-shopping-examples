@@ -1,6 +1,5 @@
-package com.rod.test.secuity.controller;
+package com.rod.test.security.controller;
 
-import com.rod.test.secuity.domain.ProfileDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -9,6 +8,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.rod.test.security.domain.ProfileDTO;
 
 import reactor.core.publisher.Mono;
 

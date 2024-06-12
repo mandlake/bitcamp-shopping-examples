@@ -1,12 +1,12 @@
-package com.rod.test.secuity.config;
+package com.rod.test.security.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.format.datetime.standard.DateTimeFormatterRegistrar;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.reactive.config.WebFluxConfigurer;
 
 @Configuration
-public class WebMvcConfig implements WebMvcConfigurer{
+public class WebFluxConfig implements WebFluxConfigurer{
     @Override
     public void addFormatters( FormatterRegistry registry) {
         DateTimeFormatterRegistrar registrar = new DateTimeFormatterRegistrar();

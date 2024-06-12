@@ -1,4 +1,4 @@
-package com.rod.test.secuity.domain;
+package com.rod.test.security.domain;
 
 import java.util.Set;
 

@@ -1,5 +1,4 @@
-package com.rod.test.secuity.config;
-
+package com.rod.test.security.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,6 +11,8 @@ import lombok.extern.log4j.Log4j2;
 @Configuration
 @EnableWebFluxSecurity
 public class SecurityFluxConfig {
+
+
     @Bean
     SecurityWebFilterChain springWebFilterChain(ServerHttpSecurity http) throws Exception {
         return http
@@ -24,5 +25,7 @@ public class SecurityFluxConfig {
                 .cors(ServerHttpSecurity.CorsSpec::disable)
                 .build();
     }
+
+
 
 }

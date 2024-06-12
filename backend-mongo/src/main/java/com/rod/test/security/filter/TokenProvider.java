@@ -1,4 +1,4 @@
-package com.rod.test.secuity.filter;
+package com.rod.test.security.filter;
 
 import org.springframework.security.core.userdetails.UserDetails;
 

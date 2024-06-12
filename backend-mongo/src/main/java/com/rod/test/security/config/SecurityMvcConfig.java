@@ -1,4 +1,4 @@
-package com.rod.test.secuity.config;
+package com.rod.test.security.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -7,10 +7,11 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.web.SecurityFilterChain;
 import lombok.extern.log4j.Log4j2;
 
-@Log4j2
 @Configuration
 @EnableWebSecurity
 public class SecurityMvcConfig {
+
+
     @Bean
     SecurityFilterChain springWebFilterChain(HttpSecurity http) throws Exception {
         return http
@@ -23,4 +24,5 @@ public class SecurityMvcConfig {
                 .cors(i -> i.disable())
                 .build();
     }
+
 }

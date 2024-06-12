@@ -1,11 +1,10 @@
-package com.rod.test.secuity.domain;
+package com.rod.test.security.domain;
 
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
 
 import java.io.Serializable;
-
 
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
