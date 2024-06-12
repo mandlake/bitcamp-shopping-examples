@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import LocalAtmOutlinedIcon from "@mui/icons-material/LocalAtmOutlined";
+import ClearOutlinedIcon from "@mui/icons-material/ClearOutlined";
 import TextsmsOutlinedIcon from "@mui/icons-material/TextsmsOutlined";
 import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
@@ -29,6 +30,18 @@ const Header = () => {
     console.log("accessToken: ", accessToken);
     setIsLoggedIn(!!accessToken);
     return accessToken;
+  };
+
+  const handleMenu = () => {
+    setIsDropdownOpen({
+      ...isDropdownOpen,
+      menu: !isDropdownOpen.menu,
+    });
+    if (isDropdownOpen.menu) {
+      router.push("/");
+    } else {
+      router.push("/pages/menues");
+    }
   };
 
   const handleAccount = () => {
@@ -61,21 +74,41 @@ const Header = () => {
           className={`flex justify-between items-center fixed top-0 w-screen `}
         >
           <div className="flex justify-between items-center">
-            <div className={`${rounded}`}>
-              <MenuIcon className={iconsCSS} />
+            <div className={`${rounded}`} onClick={() => handleMenu()}>
+              {isDropdownOpen.menu ? (
+                <ClearOutlinedIcon className={iconsCSS} />
+              ) : (
+                <MenuIcon className={`h-[50px] w-[50px] font-semibold`} />
+              )}
             </div>
-            <div className={`${rounded}`}>
+            <div
+              className={`${rounded} ${
+                isDropdownOpen.menu ? "invisible" : "visible"
+              }`}
+            >
               <LocalAtmOutlinedIcon className={iconsCSS} />
             </div>
           </div>
           <div className="flex justify-between items-center">
-            <div className={`${rounded}`}>
+            <div
+              className={`${rounded} ${
+                isDropdownOpen.menu ? "invisible" : "visible"
+              }`}
+            >
               <TextsmsOutlinedIcon className={iconsCSS} />
             </div>
-            <div className={`${rounded}`}>
+            <div
+              className={`${rounded} ${
+                isDropdownOpen.menu ? "invisible" : "visible"
+              }`}
+            >
               <NotificationsOutlinedIcon className={iconsCSS} />
             </div>
-            <div className={`${rounded} flex flex-col`}>
+            <div
+              className={`${rounded} ${
+                isDropdownOpen.menu ? "invisible" : "visible"
+              } flex flex-col`}
+            >
               <AccountCircleOutlinedIcon
                 className={iconsCSS}
                 onClick={() => handleAccount()}
