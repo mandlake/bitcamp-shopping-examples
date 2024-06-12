@@ -3,6 +3,7 @@
 import { PrismaClient } from "@prisma/client";
 import { IUser } from "../model/user";
 import { cookies } from "next/headers";
+import instance from "@/app/config/axios-config";
 
 const prisma = new PrismaClient();
 const setCookie = cookies();
@@ -29,17 +30,19 @@ export const joinApi = async (user: IUser) => {
 export const loginApi = async (user: IUser) => {
   const { username, password } = user;
   try {
-    const response = await prisma.users.update({
-      where: {
-        username: username,
-        password: password,
-      },
-      data: {
-        accessToken: "1234567890",
-      },
-    });
+    // const response = await prisma.users.update({
+    //   where: {
+    //     username: username,
+    //     password: password,
+    //   },
+    //   data: {
+    //     accessToken: "1234567890",
+    //   },
+    // });
+
+    const response = await instance().post("/users/login", user);
     setCookie.set("accessToken", "1234567890");
-    return response;
+    return response.data;
   } catch (error) {
     return error;
   }

@@ -18,13 +18,7 @@ public class UserModel implements Serializable , UserDetails {
     String email;
     String password;
 
-    List <RoleModel> roles ;
-
-    public UserModel (String email , String password , List<RoleModel> roles) {
-        this.email= email ;
-        this.password=password ;
-        this.roles=roles ;
-    }
+    List <RoleModel> roles;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

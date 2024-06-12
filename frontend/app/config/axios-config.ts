@@ -20,6 +20,7 @@ export const setInterceptor = (inputInstance: AxiosInstance) => {
       return Promise.reject(error);
     }
   );
+
   inputInstance.interceptors.response.use((response) => {
     if (response.status === 404) console.log("AXIOS INTERSEPTOR CATHCES 404");
 

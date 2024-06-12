@@ -1,7 +1,6 @@
 "use client";
 
 import { loginId } from "@/app/components/user/service/user.service";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
@@ -19,7 +18,7 @@ const Login = () => {
       await dispatch(loginId(formData))
         .then((res: any) => {
           alert("success to login");
-          console.log(res.payload.userId);
+          console.log(res);
         })
         .then(() => {
           router.push("/");
@@ -45,7 +44,7 @@ const Login = () => {
               className="w-[24vw] h-[5vh] mt-[2vh] bg-white border border-gray-700 font-bold flex justify-center items-center gap-[1.111vh]"
               type="button"
             >
-              <Image
+              <img
                 alt="google-logo"
                 src="https://w7.pngwing.com/pngs/344/344/png-transparent-google-logo-google-logo-g-suite-google-text-logo-symbol-thumbnail.png"
                 className="w-[4vh] h-[4vh]"

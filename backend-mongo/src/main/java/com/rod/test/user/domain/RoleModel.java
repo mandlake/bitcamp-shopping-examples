@@ -11,7 +11,6 @@ import java.io.Serializable;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class RoleModel implements Serializable  {
     Integer id ;
-
     RoleName roleName ;
 
     public RoleModel (RoleName roleName) {

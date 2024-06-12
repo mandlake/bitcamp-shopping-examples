@@ -1,36 +1,38 @@
-package com.rod.test.secuity;
+package com.rod.test.secuity.service;
 
-import com.rod.test.TokenProvider;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import javax.crypto.SecretKey;
+
+import com.rod.test.secuity.exception.JwtAuthenticationException;
+import com.rod.test.secuity.filter.TokenProvider;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Service;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Service;
-
-import javax.crypto.SecretKey;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.function.Function;
 
 @Service
-class JwtService implements TokenProvider {
+class TokenProviderImpl implements TokenProvider {
 
-    @Value("${jwt.secret-key}")
+    @Value("${jwt.secret}")
     private String secretKey;
 
-    @Value("${jwt.token-expiration-seconds}")
+    @Value("${jwt.expiration}")
     private long tokenExpiration;
 
-    String extractUsername(String jwt) {
+    String extractUsername(String jwt){
         return extractClaim(jwt, Claims::getSubject);
     }
 
-    List<String> extractRoles(String jwt) {
+    @SuppressWarnings("unchecked")
+    List<String> extractRoles(String jwt){
         return extractClaim(jwt, claims -> (List<String>) claims.get("roles"));
     }
 
@@ -39,11 +41,12 @@ class JwtService implements TokenProvider {
         return generateToken(Map.of(), userDetails);
     }
 
-    boolean isTokenValid(String jwt) {
+    @Override
+    public boolean isTokenValid(String jwt){
         return !isTokenExpired(jwt);
     }
 
-    private boolean isTokenExpired(String jwt) {
+    private boolean isTokenExpired(String jwt){
         return extractClaim(jwt, Claims::getExpiration).before(new Date());
     }
 
@@ -62,12 +65,12 @@ class JwtService implements TokenProvider {
                 .compact();
     }
 
-    private <T> T extractClaim(String jwt, Function<Claims, T> claimResolver) {
+    private <T> T extractClaim(String jwt, Function<Claims, T> claimResolver){
         Claims claims = extractAllClaims(jwt);
         return claimResolver.apply(claims);
     }
 
-    private Claims extractAllClaims(String jwt) {
+    private Claims extractAllClaims(String jwt){
         try {
             return Jwts.parser()
                     .verifyWith(getSigningKey())
@@ -83,4 +86,6 @@ class JwtService implements TokenProvider {
         byte[] bytes = Decoders.BASE64.decode(secretKey);
         return Keys.hmacShaKeyFor(bytes);
     }
+
+
 }
