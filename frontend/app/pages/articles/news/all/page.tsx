@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 const NewsAllPage = () => {
@@ -13,7 +14,8 @@ const NewsAllPage = () => {
         <div className="flex flex-col gap-3">
           {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item) => (
             <div key={item} className="w-[80vw] h-[30vh] border-2 border-black">
-              <img
+              <Image
+                alt="news-image"
                 className="w-[80vw] h-[20vh]"
                 src="https://www.shutterstock.com/image-illustration/abstract-watercolor-smear-blot-painting-260nw-1976207843.jpg"
                 onClick={() =>
