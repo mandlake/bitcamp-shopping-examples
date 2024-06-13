@@ -31,7 +31,7 @@ public class UsersCollectionConfig {
     @Bean
     CommandLineRunner initUsers(UserRepository repo) {
         System.out.println(" >>>> 1 실행 >>>>");
-        String uri = "mongodb://root:root@-:27017/admin";
+        String uri = "mongodb://root:root@101.79.11.115:27017/admin";
         // Construct a ServerApi instance using the ServerApi.builder() method
         ServerApi serverApi = ServerApi.builder()
                 .version(ServerApiVersion.V1)
